@@ -1,16 +1,35 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState, useLayoutEffect } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
+import url from "../assets/videos/screenRec.mp4"
+import * as THREE from 'three';
 
 export function SamModel(props) {
   const group = useRef();
-  const { nodes, materials, animations } = useGLTF("/models/Typing3.glb");
+  const { scene, nodes, materials, animations } = useGLTF("/models/Typing3.glb");
   const { actions } = useAnimations(animations, group);
 
   useEffect(() => {
     const animAction = actions['Armature|mixamo.com|Layer0'];
     console.log(animAction);
     animAction.play();
+
+    // scene.traverse((element) => {
+    //   if (['SkinnedMesh', 'Mesh'].includes(element.type)){
+    //     element.castShadow = true;
+    //     element.receiveShadow = true;
+    //   }
+    // });
   });
+
+  const [video] = useState(()=> {
+    const vid = document.createElement('video');
+    vid.src = url;
+    vid.crossOrigin='Anonymous';
+    vid.loop=true;
+    vid.muted=true;
+    vid.play();
+    return vid;
+  })
 
   return (
     <group ref={group} {...props} dispose={null}>
@@ -20,10 +39,13 @@ export function SamModel(props) {
           position={[0.14, 9.51, 3.01]}
           rotation={[-2.22, -0.14, 3.07]}
         />
+        <pointLight position={[0, 10, 10]} intensity={1} color={'white'} />
         <group name="Armature" position={[0.9, -0.19, -4.13]} scale={4.5}>
           <primitive object={nodes.Hips} />
           <skinnedMesh
             name="Wolf3D_Teeth"
+            castShadow
+            receiveShadow
             frustumCulled={false}
             geometry={nodes.Wolf3D_Teeth.geometry}
             material={materials.Wolf3D_Teeth}
@@ -34,12 +56,16 @@ export function SamModel(props) {
           <skinnedMesh
             frustumCulled={false}
             name="Wolf3D_Glasses"
+            castShadow
+            receiveShadow
             geometry={nodes.Wolf3D_Glasses.geometry}
             material={materials["Wolf3D_Glasses.001"]}
             skeleton={nodes.Wolf3D_Glasses.skeleton}
           />
           <skinnedMesh
             name="Wolf3D_Body"
+            castShadow
+            receiveShadow
             frustumCulled={false}
             geometry={nodes.Wolf3D_Body.geometry}
             material={materials["Wolf3D_Body.001"]}
@@ -47,6 +73,8 @@ export function SamModel(props) {
           />
           <skinnedMesh
             name="Wolf3D_Hair"
+            castShadow
+            receiveShadow
             frustumCulled={false}
             geometry={nodes.Wolf3D_Hair.geometry}
             material={materials["Wolf3D_Hair.001"]}
@@ -72,6 +100,8 @@ export function SamModel(props) {
           />
           <skinnedMesh
             name="Wolf3D_Outfit_Footwear"
+            castShadow
+            receiveShadow
             frustumCulled={false}
             geometry={nodes.Wolf3D_Outfit_Footwear.geometry}
             material={materials["Wolf3D_Outfit_Footwear.001"]}
@@ -232,6 +262,7 @@ export function SamModel(props) {
           rotation={[-0.04, 0, 0]}
           scale={[-0.05, 0.03, -0.06]}
         />
+        {/* Screen here! */}
         <mesh
           name="Cube005"
           castShadow
@@ -242,6 +273,13 @@ export function SamModel(props) {
           rotation={[-0.04, 0, 0]}
           scale={[-0.05, 0.03, -0.06]}
         />
+        <mesh rotation={[0,Math.PI,0]} position={[0.75,5.25,0.5]} >
+          <planeGeometry args={[3.85,1.95]}/>
+          <meshStandardMaterial emissive={"white"} side={THREE.DoubleSide}>
+            <videoTexture attach="map" args={[video]}/>
+            <videoTexture attach="emissiveMap" args={[video]} />
+          </meshStandardMaterial>
+        </mesh> 
         <mesh
           name="Cube006"
           castShadow
