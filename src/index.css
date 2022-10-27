@@ -36,6 +36,7 @@
   z-index: 10;
 }
 
+
 .div-right {
   grid-row: 1 / 12;
   grid-column: 6 / 13;

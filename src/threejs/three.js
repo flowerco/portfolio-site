@@ -7,48 +7,11 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 
 export const ThreeJsModel = () => {
-  // Scroll logic
-  const scrollHandler = (camera) => {
-    const scrollY = window.scrollY;
-  };
 
   const sizes = {
     width: window.innerWidth,
     height: window.innerHeight,
   };
-
-  // function MyControls() {
-  // 	const distToRotate = (72 * Math.PI) / 180;
-  // 	const targetIterations = distToRotate / 0.01;
-  // 	let counter = 0;
-
-  //     const [status, setStatus] = useState('NO');
-
-  // 	// camera logic
-  // 	useFrame((state) => {
-  // 		if (status === 'STARTUP') {
-  // 			state.camera.rotation.x = state.camera.rotation.z = 0;
-  // 			state.camera.rotation.y = -1.55;
-  // 		}
-  // 		if (status === 'RUNNINGRIGHT') {
-  // 			console.log('Trying to turn right');
-  // 			state.camera.rotation.y -= 0.01;
-  // 			counter++;
-  // 			if (counter > targetIterations) {
-  // 				setStatus('STOP');
-  // 				counter = 0;
-  // 			}
-  // 		}
-  // 		if (status === 'RUNNINGLEFT') {
-  // 			state.camera.rotation.y += 0.01;
-  // 			counter--;
-  // 			if (counter < -125.66) {
-  // 				setStatus('STOP');
-  // 				counter = 0;
-  // 			}
-  // 		}
-  // 	});
-  // }
 
   gsap.registerPlugin(ScrollTrigger);
 
@@ -74,11 +37,7 @@ export const ThreeJsModel = () => {
     const duck = useRef();
 
     useFrame(({ clock }) => {
-      // duck.current.rotation.y = clock.getElapsedTime();
       duck.current.rotation.y = (window.scrollY * 2 * Math.PI) / sizes.height;
-      // duck.current.position.y = -window.scrollY;
-      // canvas.current.position
-      // console.log(clock.getElapsedTime());
     });
 
     return (
@@ -94,12 +53,7 @@ export const ThreeJsModel = () => {
     const sam = useRef();
 
     useFrame(({ clock }) => {
-      // duck.current.rotation.y = clock.getElapsedTime();
       sam.current.rotation.y = (window.scrollY * 2 * Math.PI) / sizes.height;
-    //   light.current.rotation.y = (window.scrollY * 2 * Math.PI) / sizes.height;
-      // duck.current.position.y = -window.scrollY;
-      // canvas.current.position
-      // console.log(clock.getElapsedTime());
     });
 
     return (

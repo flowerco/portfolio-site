@@ -1,24 +1,17 @@
-import React, { useRef, useEffect, useState, useLayoutEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
-import url from "../assets/videos/screenRec.mp4"
-import * as THREE from 'three';
+import * as THREE from 'three'
+import url from '../assets/videos/screenRec.mp4'
 
 export function SamModel(props) {
   const group = useRef();
-  const { scene, nodes, materials, animations } = useGLTF("/models/Typing3.glb");
+  const { nodes, materials, animations } = useGLTF("/models/SamModel.glb");
   const { actions } = useAnimations(animations, group);
 
   useEffect(() => {
     const animAction = actions['Armature|mixamo.com|Layer0'];
     console.log(animAction);
     animAction.play();
-
-    // scene.traverse((element) => {
-    //   if (['SkinnedMesh', 'Mesh'].includes(element.type)){
-    //     element.castShadow = true;
-    //     element.receiveShadow = true;
-    //   }
-    // });
   });
 
   const [video] = useState(()=> {
@@ -33,19 +26,12 @@ export function SamModel(props) {
 
   return (
     <group ref={group} {...props} dispose={null}>
+      <pointLight position={[0, 10, 0]} />
       <group ref={props.innerRef} name="Scene">
-        <group
-          name="Sun"
-          position={[0.14, 9.51, 3.01]}
-          rotation={[-2.22, -0.14, 3.07]}
-        />
-        <pointLight position={[0, 10, 10]} intensity={1} color={'white'} />
         <group name="Armature" position={[0.9, -0.19, -4.13]} scale={4.5}>
           <primitive object={nodes.Hips} />
           <skinnedMesh
             name="Wolf3D_Teeth"
-            castShadow
-            receiveShadow
             frustumCulled={false}
             geometry={nodes.Wolf3D_Teeth.geometry}
             material={materials.Wolf3D_Teeth}
@@ -54,18 +40,14 @@ export function SamModel(props) {
             morphTargetInfluences={nodes.Wolf3D_Teeth.morphTargetInfluences}
           />
           <skinnedMesh
-            frustumCulled={false}
             name="Wolf3D_Glasses"
-            castShadow
-            receiveShadow
+            frustumCulled={false}
             geometry={nodes.Wolf3D_Glasses.geometry}
             material={materials["Wolf3D_Glasses.001"]}
             skeleton={nodes.Wolf3D_Glasses.skeleton}
           />
           <skinnedMesh
             name="Wolf3D_Body"
-            castShadow
-            receiveShadow
             frustumCulled={false}
             geometry={nodes.Wolf3D_Body.geometry}
             material={materials["Wolf3D_Body.001"]}
@@ -73,8 +55,6 @@ export function SamModel(props) {
           />
           <skinnedMesh
             name="Wolf3D_Hair"
-            castShadow
-            receiveShadow
             frustumCulled={false}
             geometry={nodes.Wolf3D_Hair.geometry}
             material={materials["Wolf3D_Hair.001"]}
@@ -99,20 +79,18 @@ export function SamModel(props) {
             morphTargetInfluences={nodes.EyeRight.morphTargetInfluences}
           />
           <skinnedMesh
-            name="Wolf3D_Outfit_Footwear"
-            castShadow
-            receiveShadow
-            frustumCulled={false}
-            geometry={nodes.Wolf3D_Outfit_Footwear.geometry}
-            material={materials["Wolf3D_Outfit_Footwear.001"]}
-            skeleton={nodes.Wolf3D_Outfit_Footwear.skeleton}
-          />
-          <skinnedMesh
             name="Wolf3D_Outfit_Bottom"
             frustumCulled={false}
             geometry={nodes.Wolf3D_Outfit_Bottom.geometry}
             material={materials["Wolf3D_Outfit_Bottom.001"]}
             skeleton={nodes.Wolf3D_Outfit_Bottom.skeleton}
+          />
+          <skinnedMesh
+            name="Wolf3D_Outfit_Footwear"
+            frustumCulled={false}
+            geometry={nodes.Wolf3D_Outfit_Footwear.geometry}
+            material={materials["Wolf3D_Outfit_Footwear.001"]}
+            skeleton={nodes.Wolf3D_Outfit_Footwear.skeleton}
           />
           <skinnedMesh
             name="Wolf3D_Outfit_Top"
@@ -131,6 +109,11 @@ export function SamModel(props) {
             morphTargetInfluences={nodes.Wolf3D_Head.morphTargetInfluences}
           />
         </group>
+        <group
+          name="Camera"
+          position={[11.21, 13.37, 17.49]}
+          rotation={[1.14, 0.22, -0.45]}
+        />
         <group
           name="SketchUp001"
           position={[-0.53, -0.5, -2.54]}
@@ -162,8 +145,8 @@ export function SamModel(props) {
           receiveShadow
           geometry={nodes.Table_Foot.geometry}
           material={materials["Table Leg"]}
-          position={[3.5, 0.02, -0.03]}
-          scale={[0.3, 0.07, 1.67]}
+          position={[3.48, 0.02, -0.03]}
+          scale={[0.307, 0.07, 1.67]}
         />
         <group
           name="Table_Leg"
@@ -859,6 +842,96 @@ export function SamModel(props) {
           position={[2.16, 3.07, -0.7]}
           rotation={[-0.04, 0, 0]}
           scale={[-0.05, 0.03, -0.06]}
+        />
+        <group
+          name="Cylinder"
+          position={[-3.34, 3.37, 0.56]}
+          scale={[0.51, 0.39, 0.51]}
+        >
+          <mesh
+            name="Cylinder002"
+            castShadow
+            receiveShadow
+            geometry={nodes.Cylinder002.geometry}
+            material={materials.Dirt}
+          />
+          <mesh
+            name="Cylinder002_1"
+            castShadow
+            receiveShadow
+            geometry={nodes.Cylinder002_1.geometry}
+            material={materials.Pot}
+          />
+        </group>
+        <mesh
+          name="Leaf"
+          castShadow
+          receiveShadow
+          geometry={nodes.Leaf.geometry}
+          material={materials.Plant}
+          position={[-3.24, 3.59, 0.8]}
+          rotation={[0, -0.46, 0]}
+          scale={0.17}
+        />
+        <mesh
+          name="Leaf001"
+          castShadow
+          receiveShadow
+          geometry={nodes.Leaf001.geometry}
+          material={materials.Plant}
+          position={[-3.14, 3.71, 0.61]}
+          rotation={[0, 0.63, 0]}
+          scale={[0.2, 0.23, 0.2]}
+        />
+        <mesh
+          name="Leaf002"
+          castShadow
+          receiveShadow
+          geometry={nodes.Leaf002.geometry}
+          material={materials.Plant}
+          position={[-3.43, 3.49, 0.61]}
+          rotation={[-Math.PI, 0.41, -Math.PI]}
+          scale={[0.2, 0.26, 0.2]}
+        />
+        <mesh
+          name="Leaf003"
+          castShadow
+          receiveShadow
+          geometry={nodes.Leaf003.geometry}
+          material={materials.Plant}
+          position={[-3.27, 3.67, 0.56]}
+          rotation={[0, 1.55, 0]}
+          scale={[0.22, 0.24, 0.22]}
+        />
+        <mesh
+          name="Leaf004"
+          castShadow
+          receiveShadow
+          geometry={nodes.Leaf004.geometry}
+          material={materials.Plant}
+          position={[-3.48, 3.59, 0.3]}
+          rotation={[Math.PI, -1.32, Math.PI]}
+          scale={[0.22, 0.24, 0.22]}
+        />
+        <mesh
+          name="Leaf005"
+          castShadow
+          receiveShadow
+          geometry={nodes.Leaf005.geometry}
+          material={materials.Plant}
+          position={[-3.29, 3.61, 0.34]}
+          rotation={[0, 1.08, 0]}
+          scale={[0.15, 0.14, 0.15]}
+        />
+        <mesh
+          name="Leaf006"
+          castShadow
+          receiveShadow
+          geometry={nodes.Leaf006.geometry}
+          material={materials.Plant}
+          position={[-3.18, 3.67, 0.69]}
+          rotation={[0, -0.26, 0]}
+          scale={[0.22, 0.24, 0.22]}
         />
         <group name="SketchUp" position={[-0.53, -0.5, -2.54]} scale={0.11}>
           <mesh
@@ -1716,4 +1789,4 @@ export function SamModel(props) {
   );
 }
 
-useGLTF.preload("/models/Typing3.glb");
+useGLTF.preload("/models/SamModel.glb");

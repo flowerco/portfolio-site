@@ -30,6 +30,10 @@ function App () {
                 <div className="div-lower flex justify-start items-center mt-6 p-8">
                   <p className="text-2xl font-semibold">I'm Sam Flower, and FlowerCo is my online programming and web design portfolio. </p>
                 </div>
+                {/* <div className="div-extra mt-6 p-8">
+                  <p className="text-xl font-semibold">All of the code used in this website can be found on my GitHub, here: </p>
+                  <a className="text-xl font-semibold pt-3" href="https://github.com/flowerco">https://github.com/flowerco</a>
+                </div> */}
               </div>
             </div>
           </section>
