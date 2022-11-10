@@ -1,51 +1,32 @@
 import { Navbar } from "./components/Navbar";
-import Logo from './assets/images/flowerco_logo.png';
 import { ThreeJsModel } from "./threejs/three";
+import { Sidebar } from "./components/Sidebar";
 import './App.css';
+import { createContext, useContext, useState } from "react";
+import { SidebarContext } from "./index";
+import { MainPage } from "./components/MainPage";
 
 function App () {
 
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebarOpen = () => {
+    setSidebarOpen(!sidebarOpen);
+  }
+
   return (
-    <div className="wrapper">
-    <Navbar/>
+      <div className="wrapper">
+        <Navbar sidebarOpen={sidebarOpen} toggleSidebarOpen={toggleSidebarOpen}/>
 
-    <div className="experience">
-      <ThreeJsModel />
-    </div>
+        <div className="experience">
+          <ThreeJsModel />
+        </div>
 
-
-    <div className="page">
-      <div className="page-wrapper">
-        <section>
-            <div className="wrapper justify-center items-center flex-grow w-full">
-
-              <div className="container">
-                
-                <div className="div-left flex justify-center items-center">
-                  <p className="text-4xl font-semibold text-center">Welcome to FlowerCo</p>
-                  <div className="h-24 w-14 flex items-center mx-6">
-                    <img className="object-cover " src={Logo} alt="FlowerCo logo. A flower made from a cog, with the teeth as petals."/>
-                  </div>
-                </div>
-                <div className="div-lower flex justify-start items-center mt-6 p-8">
-                  <p className="text-2xl font-semibold">I'm Sam Flower, and FlowerCo is my online programming and web design portfolio. </p>
-                </div>
-                {/* <div className="div-extra mt-6 p-8">
-                  <p className="text-xl font-semibold">All of the code used in this website can be found on my GitHub, here: </p>
-                  <a className="text-xl font-semibold pt-3" href="https://github.com/flowerco">https://github.com/flowerco</a>
-                </div> */}
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <div className="ml-24 px-12 py-8 bg-customYellow rounded-lg">
-              <h1>Something else</h1>
-            </div>
-          </section>
+        <div className="page">   
+          <MainPage sidebarOpen={sidebarOpen}/>
+          <Sidebar sidebarOpen={sidebarOpen}/>
         </div>
       </div>
-    </div>
   )
 }
 

@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Sidebar } from './components/Sidebar';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+
+export const SidebarContext = createContext({
+  open: false,
+  toggleOpen: () => {}
+});
+
 root.render(
   <React.StrictMode>
     <div className='h-full w-full antialiased bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400'>
-      <App />
+      <SidebarContext.Provider value={false}>
+        <Router>
+          <App />
+        </Router>
+      </SidebarContext.Provider>
     </div>
   </React.StrictMode>
 );
