@@ -10,6 +10,7 @@
 .wrapper {
   display:flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .container {
@@ -21,7 +22,7 @@
 }
 
 .div-left {
-  grid-row: 3 / 6;
+  grid-row: 4 / 6;
   grid-column: 2 / 7;
   background-color: yellow;
   border-radius: 10px;
@@ -29,7 +30,7 @@
 }
 
 .div-lower {
-  grid-row: 6 / 11;
+  grid-row: 6 / 9;
   grid-column: 2 / 6;
   background-color: yellow;
   border-radius: 10px;
@@ -41,6 +42,21 @@
   grid-row: 1 / 12;
   grid-column: 6 / 13;
   z-index: 0;
+}
+
+.section-title {
+  grid-row: 3 / 5;
+  grid-column: 2 / 7;
+  background-color: yellow;
+  border-radius: 10px;
+  z-index: 10;
+}
+
+.project-box {
+  grid-row: 5 / 11;
+  grid-column: 2 / 12;
+  border-radius: 10px;
+  z-index: 10;
 }
 
 body {

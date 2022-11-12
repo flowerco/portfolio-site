@@ -8,7 +8,6 @@ import { Sidebar } from './components/Sidebar';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-
 export const SidebarContext = createContext({
   open: false,
   toggleOpen: () => {}

@@ -12,7 +12,7 @@ export const Navbar = ({ sidebarOpen, toggleSidebarOpen }) => {
     >
       <TiThMenu />
       <p>|</p>
-      <p>MENU</p>
+      <p>{sidebarOpen ? 'BACK' : 'MENU'}</p>
     </button>
     </nav>
   )

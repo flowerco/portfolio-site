@@ -13,18 +13,18 @@ export const ThreeJsModel = () => {
     height: window.innerHeight,
   };
 
-  gsap.registerPlugin(ScrollTrigger);
+//   gsap.registerPlugin(ScrollTrigger);
 
-  var rotate = new gsap.timeline({
-    scrollTrigger: {
-      trigger: "body",
-      start: "top top",
-      end: "bottom bottom",
-      markers: true,
-      scrub: true,
-      toggleActions: "restart pause resume pause",
-    },
-  });
+//   var rotate = new gsap.timeline({
+//     scrollTrigger: {
+//       trigger: "body",
+//       start: "top top",
+//       end: "bottom bottom",
+//       markers: true,
+//       scrub: true,
+//       toggleActions: "restart pause resume pause",
+//     },
+//   });
 
   // const duck = useRef();
   // rotate.to(duck, {

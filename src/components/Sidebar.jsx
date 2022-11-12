@@ -5,9 +5,6 @@ import { AiOutlineStar, AiOutlineUser } from 'react-icons/ai';
 import './Sidebar.css';
 import { useState, useRef } from 'react';
 import { useEffect } from 'react';
-import { FirstPersonControls } from '@react-three/drei';
-import { useContext } from 'react';
-import { SidebarContext } from '..';
 
 const sidebarNavItems = [
   {
@@ -23,17 +20,23 @@ const sidebarNavItems = [
     section: 'apps'
   },
   {
-    display: 'Specialist Projects',
+    display: 'Bootcamp Projects',
     icon: <BsCalendarEvent />,
     to: '/projects',
     section: 'projects'
+  },
+  {
+    display: 'Algorithms',
+    icon: <BsCalendarEvent />,
+    to: '/algos',
+    section: 'algos'
   },
   {
     display: 'About Me',
     icon: <AiOutlineUser />,
     to: '/about',
     section: 'about'
-  },
+  }
 ]
 
 export const Sidebar = ({ sidebarOpen }) => {
