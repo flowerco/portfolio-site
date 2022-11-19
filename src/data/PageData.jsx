@@ -51,7 +51,7 @@ export const algoData = [
   },
   {
     title: 'Pathfinding',
-    description: `A website to explain the popular Djikstra and A* pathfinding algorithms. Within a grid of squares, select a start and end point, and either create a maze yourself or generate one with a recursive division algorithm.`,
+    description: `A website to explain the popular Djikstra and A* pathfinding algorithms. Within a grid of squares, select a start and end point, and either draw a maze or generate one with a recursive division algorithm.`,
     image: pathfinderView,
     url: 'https://flowerco.tech/pathfinder'
   }

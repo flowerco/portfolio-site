@@ -7,16 +7,45 @@ import { useEffect, useState, useRef } from "react";
 
 import * as THREE from 'three';
 import WAVES from 'vanta/dist/vanta.waves.min.js';
+import { BiNoEntry } from "react-icons/bi";
 
 export const AboutMe = () => {
 
+  const appearRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  const showContent = (entries) => {
+    const [ entry ] = entries;
+    // Note: changing the state is what causes the component to rerender.
+    // Then the useEffect will include the function to update the css to
+    // actually make the relevant dom nodes appear.
+    setIsVisible(entry.isIntersecting);
+  }
+
+  const options = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.6
+  }
+
   useEffect(() => {
-    setTimeout(() =>{
-      const main = document.querySelector('main');
-      main.style.opacity = 1;
-      main.style.filter = 'blur(0px)';
-    }, 1000);
-  }, []);
+
+    const observer = new IntersectionObserver(showContent, options);
+    if (appearRef.current) observer.observe(appearRef.current);
+
+    if (isVisible) {
+      setTimeout(() =>{
+        const main = appearRef.current;
+        main.style.opacity = 1;
+        main.style.filter = 'blur(0px)';
+      }, 1000);
+    }
+
+    return () => {
+      if (appearRef.current) observer.unobserve(appearRef.current);
+    }
+    
+  }, [appearRef, options]);
 
   const [vantaEffect, setVantaEffect] = useState(null)
   const vantaRef = useRef(null)
@@ -44,7 +73,7 @@ export const AboutMe = () => {
   return (
     <div className="about flex flex-col justify-center">
       <div ref={vantaRef} id="vanta"></div>
-      <div className="main">
+      <div ref={appearRef} className="main">
         <div className="header">
           <img src={profilePic} />
           <h1>@flowerco</h1>

@@ -1,70 +1,43 @@
 import { Suspense, useState, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { DuckModel } from "./DuckModel";
-import { SamModel } from "./SamModel";
+import { SamModel3 } from "./SamModel3";
+import { SmartModel } from "./SmartModel";
 import { OrbitControls } from "@react-three/drei";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 
 export const ThreeJsModel = () => {
-
   const sizes = {
     width: window.innerWidth,
     height: window.innerHeight,
   };
 
-//   gsap.registerPlugin(ScrollTrigger);
-
-//   var rotate = new gsap.timeline({
-//     scrollTrigger: {
-//       trigger: "body",
-//       start: "top top",
-//       end: "bottom bottom",
-//       markers: true,
-//       scrub: true,
-//       toggleActions: "restart pause resume pause",
-//     },
-//   });
-
-  // const duck = useRef();
-  // rotate.to(duck, {
-  //     rotation: 360*5,
-  //     duration: 1,
-  //     ease: 'none'
-  // })
-
-  function MyDuck() {
-    const duck = useRef();
-
-    useFrame(({ clock }) => {
-      duck.current.rotation.y = (window.scrollY * 2 * Math.PI) / sizes.height;
-    });
-
-    return (
-      <DuckModel
-        innerRef={duck}
-        position={[1.2, -0.7, -1]}
-        rotation={[0.5, -2.5, 0]}
-      />
-    );
-  }
-
   function MyModel() {
     const sam = useRef();
 
     useFrame(({ clock }) => {
-      sam.current.rotation.y = (window.scrollY * 2 * Math.PI) / sizes.height;
+        if (sam.current) sam.current.rotation.y =
+        (window.scrollY * 2 * Math.PI) / sizes.height;
+
+    //   if (sam.current) {
+    //     if (window.scrollY < sizes.height) {
+    //       sam.current.rotation.y =
+    //         (window.scrollY * 2 * Math.PI) / sizes.height;
+    //     } else {
+    //       sam.current.rotation.y =
+    //         -1 * (window.scrollY * 2 * Math.PI) / sizes.height;
+    //     }
+    //   }
     });
 
     return (
       <>
-        {/* <pointLight ref={light} position={[10, 10, 10]} /> */}
         <Suspense fallback={null}>
-            <SamModel
+          <SamModel3
             innerRef={sam}
             position={[3, -1.7, -10]}
             rotation={[0.5, -2.5, 0]}
-            />
+          />
         </Suspense>
       </>
     );

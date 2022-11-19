@@ -3,8 +3,11 @@ import { ThreeJsModel } from "./threejs/three";
 import { Sidebar } from "./components/Sidebar";
 import './App.css';
 import { createContext, useContext, useState } from "react";
-import { SidebarContext } from "./index";
 import { MainPage } from "./components/MainPage";
+import { useRef } from 'react';
+
+// Import the sections which require assigned refs
+
 
 function App () {
 
@@ -14,8 +17,16 @@ function App () {
     setSidebarOpen(!sidebarOpen);
   }
 
+  const homeRef = useRef(null);
+  const appRef = useRef(null);
+  const projRef = useRef(null);
+  const algoRef = useRef(null);
+  const aboutRef = useRef(null);
+
+  const sectionRefs = [homeRef, appRef, projRef, algoRef, aboutRef];
+
   return (
-      <div className="wrapper">
+      <div className={`wrapper`}>
         <Navbar sidebarOpen={sidebarOpen} toggleSidebarOpen={toggleSidebarOpen}/>
 
         <div className="experience">
@@ -23,8 +34,8 @@ function App () {
         </div>
 
         <div className="page">   
-          <MainPage sidebarOpen={sidebarOpen}/>
-          <Sidebar sidebarOpen={sidebarOpen}/>
+          <MainPage sidebarOpen={sidebarOpen} sectionRefs={sectionRefs}/>
+          <Sidebar sidebarOpen={sidebarOpen} sectionRefs={sectionRefs} toggleSidebarOpen={toggleSidebarOpen}/>
         </div>
       </div>
   )

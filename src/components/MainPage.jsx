@@ -2,14 +2,19 @@ import Logo from "../assets/images/flowerco_logo.png";
 import { ItemList } from "./ItemList";
 import { appData, projectData, algoData } from "../data/PageData";
 import { AboutMe } from "./AboutMe";
+import { useRef } from "react";
 
-export const MainPage = ({ sidebarOpen }) => {
+export const MainPage = ({ sidebarOpen, sectionRefs }) => {
+
+  // TODO: This can be set up with a single Ref which contains an array
+  const [ homeRef, appRef, projRef, algoRef, aboutRef ] = sectionRefs;
+
   return (
     <div className="page-wrapper">
       {sidebarOpen && (
-        <div className="fixed top-0 left-0 h-full w-full z-20 backdrop-blur-2xl"></div>
+        <div className="fixed top-0 left-0 h-full w-full z-30 backdrop-blur-2xl"></div>
       )}
-      <section id="home">
+      <section ref={homeRef} id="home">
         <div className="wrapper justify-center items-center flex-grow w-full">
           <div className="container">
             <div className="div-left flex justify-center items-center">
@@ -38,7 +43,7 @@ export const MainPage = ({ sidebarOpen }) => {
         </div>
       </section>
 
-      <section id="apps">
+      <section ref={appRef} id="apps">
         <div className="wrapper justify-center items-center flex-grow w-full">
           <div className="container">
             <div className="section-title flex flex-col justify-center items-start pl-8">
@@ -54,7 +59,7 @@ export const MainPage = ({ sidebarOpen }) => {
         </div>
       </section>
 
-      <section id="projects">
+      <section ref={projRef} id="projects">
         <div className="wrapper justify-center items-center flex-grow w-full">
           <div className="container">
             <div className="section-title flex flex-col justify-center items-start pl-8">
@@ -73,7 +78,7 @@ export const MainPage = ({ sidebarOpen }) => {
         </div>
       </section>
 
-      <section id="algos">
+      <section ref={algoRef} id="algos">
         <div className="wrapper justify-center items-center flex-grow w-full">
           <div className="container">
             <div className="section-title flex flex-col justify-center items-start pl-8">
@@ -89,7 +94,7 @@ export const MainPage = ({ sidebarOpen }) => {
         </div>
       </section>
 
-      <section id="about">
+      <section ref={aboutRef} id="about">
       <div className="wrapper justify-center items-center flex-grow w-full">
           <div className="container">
             <AboutMe />
