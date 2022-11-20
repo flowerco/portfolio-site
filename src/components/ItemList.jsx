@@ -36,7 +36,7 @@ export const ItemList = ({ itemData }) => {
             key={index}
             href={item.url}
             style={{'--i': `${index}`}}
-            className={`${show ? 'show' : ''} md:appear-left flex md:flex-col rounded-lg h-44 md:h-full w-full md:w-72 bg-customYellow cursor-pointer`}
+            className={`${show ? 'show' : ''} appear-left flex md:flex-col rounded-lg h-44 md:h-full w-full md:w-72 bg-customYellow cursor-pointer`}
           >
             <div className="h-full md:h-2/5 w-full">
               <img

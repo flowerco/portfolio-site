@@ -13,14 +13,14 @@ const sidebarNavItems = [
     section: "",
   },
   {
-    display: "Latest Applications",
-    icon: <FaReact />,
+    display: "Group Projects",
+    icon: <SiTypescript />,
     to: "/apps",
     section: "apps",
   },
   {
-    display: "Bootcamp Projects",
-    icon: <SiTypescript />,
+    display: "Solo Projects",
+    icon: <FaReact />,
     to: "/projects",
     section: "projects",
   },

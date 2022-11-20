@@ -16,7 +16,7 @@ section
     font-size: 7vmin;
 }
 
-/* here the rules for small windows */
+/* here are the rules for small windows */
 @media (max-width: 768px) { 
   .experience {
     height: 50%;

@@ -1,7 +1,7 @@
 import homeIcon from "../assets/images/homepage.svg";
 import gitHubIcon from "../assets/images/github.svg";
 import linkedInIcon from "../assets/images/linkedin.svg";
-import profilePic from "../assets/images/takuya.jpg";
+import profilePic from "../assets/images/profile.jpg";
 import './AboutMe.css';
 import { useEffect, useState, useRef } from "react";
 

@@ -1,23 +1,27 @@
-import { Suspense, useState, useRef } from "react";
+import { Suspense, useState, useRef, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from 'three';
 import { SamModel3 } from "./SamModel3";
-import { SmartModel } from "./SmartModel";
-import { OrbitControls } from "@react-three/drei";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/all";
 
 export const ThreeJsModel = () => {
-  const sizes = {
+  let sizes = {
     width: window.innerWidth,
     height: window.innerHeight,
   };
 
-  const startPosition = sizes.width < 500 ? [0, -1.7, -10] : [3, -1.7, -10];
-  const endPosition = [6, -1.7, -7];
+  let startPosition = [3, -1.7, -10];
 
-  const startVector = new THREE.Vector3(...startPosition);
-  const endVector = new THREE.Vector3(...endPosition);
+  useEffect(() => {
+    // sizes = {
+    //   width: window.innerWidth,
+    //   height: window.innerHeight,
+    // }
+    if (sizes.width < 500) startPosition = [0, -1.7, -10];
+  }, [sizes])
+  // const endPosition = [6, -1.7, -7];
+
+  // const startVector = new THREE.Vector3(...startPosition);
+  // const endVector = new THREE.Vector3(...endPosition);
 
 
   function MyModel() {

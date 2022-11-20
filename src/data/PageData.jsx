@@ -8,31 +8,32 @@ import sortingView from '../assets/images/sorting.png';
 
 export const appData = [
   {
-    title: 'UKMPDonors.com',
-    description: 'A website to find donations received by your local MP, coded in Python with routing via Flask and templating in Jinja. Data is sourced from government APIs and stored via Postgres on Heroku.',
-    image: ukmpView,
-    url: 'https://www.ukmpdonors.com'
-  },
-  {
     title: 'Okané',
     description: `A full-stack budgeting app built in React with Typescript and Tailwind CSS, the backend is hosted on Fly.io with a Koa server connected to a Postgres database.<br /><b>Login:</b> simonroope@email.com<br /><b>Pass:</b> 1234`,
     image: okaneView,
     url: 'https://okane-money.netlify.app'
-  }
-];
-
-export const projectData = [
-  {
-    title: 'Curato',
-    description: 'A React app to curate and share photo albums with your friends, written in Typescript with a Koa/MongoDB backend and testing in Jest and Cypress.',
-    image: curatoView,
-    url: 'https://github.com/flowerco/curato'
   },
   {
     title: 'Listy',
     description: `An app to find and rate your favourite movies, and create a list for later viewing. Uses The Movie Database API to search and store selected movies in an Express/MongoDB backend.`,
     image: listyView,
     url: 'https://github.com/flowerco/listy'
+  }
+];
+
+export const projectData = [
+  
+  {
+    title: 'UKMPDonors.com',
+    description: 'A website to find donations received by your local MP, coded in Python with routing via Flask and templating in Jinja. Data is sourced from government APIs and stored via Postgres on Heroku.',
+    image: ukmpView,
+    url: 'https://www.ukmpdonors.com'
+  },
+  {
+    title: 'Curato',
+    description: 'A React app to curate and share photo albums with your friends, written in Typescript with a Koa/MongoDB backend and testing in Jest and Cypress.',
+    image: curatoView,
+    url: 'https://github.com/flowerco/curato'
   },
   {
     title: 'Blackjack',

@@ -48,11 +48,11 @@ export const MainPage = ({ sidebarOpen, sectionRefs }) => {
           <div className="container">
             <div className="section-title flex flex-col justify-center items-center md:items-start pl-8">
               <p className="text-2xl md:text-4xl font-semibold text-center">
-                Latest Applications
+                Group Projects 
               </p>
-              <p className="text-lg md:text-xl mt-2">Projects I'm working on currently</p>
+              <p className="text-lg md:text-xl mt-2">Applications developed in 3 to 5 person teams</p>
             </div>
-            <div className="project-box flex flex-col md:flex-row justify-start items-center gap-6 mt-6">
+            <div className="project-box flex flex-col md:flex-row justify-start items-center px-4 md:px-0 gap-6 mt-6">
               <ItemList itemData={appData} />
             </div>
           </div>
@@ -64,14 +64,13 @@ export const MainPage = ({ sidebarOpen, sectionRefs }) => {
           <div className="container">
             <div className="section-title flex flex-col justify-center items-center md:items-start pl-8">
               <p className="text-2xl md:text-4xl font-semibold text-center">
-                Bootcamp Projects
+                Solo Projects
               </p>
               <p className="text-lg md:text-xl mt-2">
-                I recently finished a Javascript bootcamp, creating the
-                following projects
+                Projects I'm working on currently
               </p>
             </div>
-            <div className="project-box flex flex-col md:flex-row justify-start items-center gap-6 mt-6">
+            <div className="project-box flex flex-col md:flex-row justify-start items-center px-4 md:px-0 gap-6 mt-6">
               <ItemList itemData={projectData} />
             </div>
           </div>
@@ -89,7 +88,7 @@ export const MainPage = ({ sidebarOpen, sectionRefs }) => {
                 Because everyone has their favourite algorithms they like to practice with... right?
               </p>
             </div>
-            <div className="project-box flex flex-col md:flex-row justify-start items-center gap-6 mt-6">
+            <div className="project-box flex flex-col md:flex-row justify-start items-center px-4 md:px-0 gap-6 mt-6">
               <ItemList itemData={algoData} />
             </div>
           </div>
@@ -97,7 +96,7 @@ export const MainPage = ({ sidebarOpen, sectionRefs }) => {
       </section>
 
       <section ref={aboutRef} id="about">
-      <div className="wrapper justify-center items-center flex-grow w-full">
+      <div className="wrapper justify-center items-center flex-grow px-2 md:px-0 w-full">
           <div className="container">
             <AboutMe />
           </div>
