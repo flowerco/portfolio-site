@@ -40,6 +40,7 @@ const sidebarNavItems = [
 
 export const Sidebar = ({ sidebarOpen, toggleSidebarOpen, sectionRefs }) => {
   // TODO: The initial active index should be the value of round(scrollY/sizes.height)
+  // The useEffect should have a dependency on this value.
   const [activeIndex, setActiveIndex] = useState(0);
   const [stepHeight, setStepHeight] = useState(0);
 

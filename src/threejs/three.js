@@ -1,5 +1,6 @@
 import { Suspense, useState, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
+import * as THREE from 'three';
 import { SamModel3 } from "./SamModel3";
 import { SmartModel } from "./SmartModel";
 import { OrbitControls } from "@react-three/drei";
@@ -12,22 +13,61 @@ export const ThreeJsModel = () => {
     height: window.innerHeight,
   };
 
+  const startPosition = sizes.width < 500 ? [0, -1.7, -10] : [3, -1.7, -10];
+  const endPosition = [6, -1.7, -7];
+
+  const startVector = new THREE.Vector3(...startPosition);
+  const endVector = new THREE.Vector3(...endPosition);
+
+
   function MyModel() {
     const sam = useRef();
+    let prevScroll = 0;
 
     useFrame(({ clock }) => {
-        if (sam.current) sam.current.rotation.y =
-        (window.scrollY * 2 * Math.PI) / sizes.height;
+      // console.log((window.scrollY/sizes.height)%1);
+      if (sam.current) {
+        const deltaScroll = window.scrollY - prevScroll;
+        if (window.scrollY / sizes.height  < 1 ) {
+          sam.current.rotation.y = (window.scrollY * 2 * Math.PI) / sizes.height;
+        } 
+        // else {
+          // const scrollPcnt =  (window.scrollY / sizes.height) % 1;
+  
+          
+          // if (deltaScroll < 0) {
+          //   sam.current.position.lerp(endVector, 0.1);
+          // } else if (deltaScroll > 0) {
+          //   sam.current.position.lerp(startVector, 0.1);
+          // }
 
-    //   if (sam.current) {
-    //     if (window.scrollY < sizes.height) {
-    //       sam.current.rotation.y =
-    //         (window.scrollY * 2 * Math.PI) / sizes.height;
-    //     } else {
-    //       sam.current.rotation.y =
-    //         -1 * (window.scrollY * 2 * Math.PI) / sizes.height;
-    //     }
-    //   }
+          // console.log('Scroll Pcnt: ', scrollPcnt);
+          // console.log('deltaDist: ', deltaDist);
+          // console.log('X Position: ', sam.current.position.x);
+          
+          // sam.current.position.x -= deltaScroll/100;
+          // sam.current.position.z -= deltaScroll/100;
+          // console.log('X Position: ', sam.current.position.x);
+          // console.log('Delta Scroll: ', deltaScroll);
+          // const deltaDist = -1 * (deltaScroll/100) * (sizes.height/sizes.width);
+          // const direction = new THREE.Vector3(deltaDist, 0, deltaDist);
+          // sam.current.position.add(direction);
+          // const startVector = new THREE.Vector3(...startPosition);
+          // const currMove = -1 * (window.scrollY/sizes.height)%1;
+          // sam.current.position.set(startVector + new THREE.Vector3(currMove, 0, currMove));
+      //   } 
+      //   prevScroll = window.scrollY;
+      // }
+
+      //   if (sam.current) {
+      //     if (window.scrollY < sizes.height) {
+      //       sam.current.rotation.y =
+      //         (window.scrollY * 2 * Math.PI) / sizes.height;
+      //     } else {
+      //       sam.current.rotation.y =
+      //         -1 * (window.scrollY * 2 * Math.PI) / sizes.height;
+      //     }
+        }
     });
 
     return (
@@ -35,7 +75,7 @@ export const ThreeJsModel = () => {
         <Suspense fallback={null}>
           <SamModel3
             innerRef={sam}
-            position={[3, -1.7, -10]}
+            position={startPosition}
             rotation={[0.5, -2.5, 0]}
           />
         </Suspense>
@@ -43,31 +83,12 @@ export const ThreeJsModel = () => {
     );
   }
 
-  // Create a control component which accepts the canvas and the model, and moves them both
-  function MyControls({ canvas, model }) {
-    useFrame(({ clock }) => {
-      // duck.current.rotation.y = clock.getElapsedTime();
-      // canvas.current.position.y = -window.scrollY;
-      // canvas.current.position
-      // console.log(clock.getElapsedTime());
-    });
-  }
-
-  // function animate() {
-  //     requestAnimationFrame(animate);
-  //     // controls.update();
-  //     renderer.render(scene, camera);
-  // }
 
   return (
-    <div className="p-8 w-full h-full border-2 border-black">
+    <div className="p-8 w-full h-full">
       <Canvas camera={{ position: [0, 0, 3], fov: 55 }}>
         <ambientLight intensity={0.35} />
-        {/* <pointLight ref={light} position={[10, 10, 10]} />
-        <Suspense fallback={null}>
-          <MyModel />
-        </Suspense> */}
-        <MyModel />
+        <MyModel/>
       </Canvas>
     </div>
   );

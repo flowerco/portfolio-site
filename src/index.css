@@ -14,12 +14,14 @@
   overflow-y: hidden;
 }
 
-.container {
+.container, .title-container {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(12, 1fr);
   height: 100%;
   width: 100%;
+  max-height: 1080px;
+  max-width: 1400px;
 }
 
 .div-left {
@@ -71,4 +73,54 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+/* here the rules for small windows */
+@media (max-width: 768px) { 
+  .title-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 7rem 2rem 2rem 2rem;
+    height: 100%;
+    width: 100%;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 7rem 2rem 2rem 2rem;
+    height: 100%;
+    width: 100%;
+  }
+
+  .div-left {
+    background-color: yellow;
+    border-radius: 10px;
+    z-index: 10;
+  }
+
+  .div-lower {
+    grid-row: 6 / 9;
+    grid-column: 2 / 6;
+    background-color: yellow;
+    border-radius: 10px;
+    z-index: 10;
+  }
+
+
+  .div-right {
+    grid-row: 1 / 12;
+    grid-column: 6 / 13;
+    z-index: 0;
+  }
+
+  .section-title {
+    background-color: yellow;
+    border-radius: 10px;
+    padding: 1rem;
+    z-index: 10;
+  }
 }

@@ -36,19 +36,19 @@ export const ItemList = ({ itemData }) => {
             key={index}
             href={item.url}
             style={{'--i': `${index}`}}
-            className={`${show ? 'show' : ''} appear-left flex flex-col rounded-lg h-full w-72 bg-customYellow cursor-pointer`}
+            className={`${show ? 'show' : ''} md:appear-left flex md:flex-col rounded-lg h-44 md:h-full w-full md:w-72 bg-customYellow cursor-pointer`}
           >
-            <div className="h-2/5">
+            <div className="h-full md:h-2/5 w-full">
               <img
                 src={item.image}
                 alt="App pic"
-                className="h-full w-full object-cover object-top rounded-t-lg"
+                className="h-full w-full object-cover object-top rounded-l-lg md:rounded-t-lg"
               />
             </div>
-            <div className="h-3/5 p-4">
-              <p className="text-2xl font-bold">{item.title}</p>
+            <div className="h-3/5 px-2 py-1 md:p-4">
+              <p className="text-lg md:text-2xl font-bold">{item.title}</p>
               <p
-                className="text-base"
+                className="text-sm md:text-base"
                 dangerouslySetInnerHTML={{ __html: item.description }}
               ></p>
             </div>

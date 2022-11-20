@@ -97,3 +97,10 @@ a {
   text-decoration: none;
   font-size: 1.2rem;
 }
+
+@media (max-width: 768px) { 
+  .about {
+    height: 100%;
+    width: 100%;
+  }
+}

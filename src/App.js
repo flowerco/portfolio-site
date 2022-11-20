@@ -1,13 +1,10 @@
 import { Navbar } from "./components/Navbar";
 import { ThreeJsModel } from "./threejs/three";
 import { Sidebar } from "./components/Sidebar";
-import './App.css';
-import { createContext, useContext, useState } from "react";
+import { useEffect, useState } from "react";
 import { MainPage } from "./components/MainPage";
 import { useRef } from 'react';
-
-// Import the sections which require assigned refs
-
+import './App.css';
 
 function App () {
 
@@ -17,6 +14,11 @@ function App () {
     setSidebarOpen(!sidebarOpen);
   }
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  // TODO: Could this all be one ref, containing an array?
   const homeRef = useRef(null);
   const appRef = useRef(null);
   const projRef = useRef(null);
@@ -26,7 +28,7 @@ function App () {
   const sectionRefs = [homeRef, appRef, projRef, algoRef, aboutRef];
 
   return (
-      <div className={`wrapper`}>
+      <div className='wrapper'>
         <Navbar sidebarOpen={sidebarOpen} toggleSidebarOpen={toggleSidebarOpen}/>
 
         <div className="experience">

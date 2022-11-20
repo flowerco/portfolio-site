@@ -16,9 +16,9 @@ export const MainPage = ({ sidebarOpen, sectionRefs }) => {
       )}
       <section ref={homeRef} id="home">
         <div className="wrapper justify-center items-center flex-grow w-full">
-          <div className="container">
+          <div className="title-container">
             <div className="div-left flex justify-center items-center">
-              <p className="text-4xl font-semibold text-center">
+              <p className="text-3xl md:text-4xl font-semibold text-center">
                 Welcome to FlowerCo
               </p>
               <div className="h-24 w-14 flex items-center mx-6">
@@ -46,13 +46,13 @@ export const MainPage = ({ sidebarOpen, sectionRefs }) => {
       <section ref={appRef} id="apps">
         <div className="wrapper justify-center items-center flex-grow w-full">
           <div className="container">
-            <div className="section-title flex flex-col justify-center items-start pl-8">
-              <p className="text-4xl font-semibold text-center">
+            <div className="section-title flex flex-col justify-center items-center md:items-start pl-8">
+              <p className="text-2xl md:text-4xl font-semibold text-center">
                 Latest Applications
               </p>
-              <p className="text-xl mt-2">Projects I'm working on currently</p>
+              <p className="text-lg md:text-xl mt-2">Projects I'm working on currently</p>
             </div>
-            <div className="project-box flex justify-start items-center gap-6 mt-6">
+            <div className="project-box flex flex-col md:flex-row justify-start items-center gap-6 mt-6">
               <ItemList itemData={appData} />
             </div>
           </div>
@@ -62,16 +62,16 @@ export const MainPage = ({ sidebarOpen, sectionRefs }) => {
       <section ref={projRef} id="projects">
         <div className="wrapper justify-center items-center flex-grow w-full">
           <div className="container">
-            <div className="section-title flex flex-col justify-center items-start pl-8">
-              <p className="text-4xl font-semibold text-center">
+            <div className="section-title flex flex-col justify-center items-center md:items-start pl-8">
+              <p className="text-2xl md:text-4xl font-semibold text-center">
                 Bootcamp Projects
               </p>
-              <p className="text-xl mt-2">
+              <p className="text-lg md:text-xl mt-2">
                 I recently finished a Javascript bootcamp, creating the
                 following projects
               </p>
             </div>
-            <div className="project-box flex justify-start items-center gap-6 mt-6">
+            <div className="project-box flex flex-col md:flex-row justify-start items-center gap-6 mt-6">
               <ItemList itemData={projectData} />
             </div>
           </div>
@@ -82,12 +82,14 @@ export const MainPage = ({ sidebarOpen, sectionRefs }) => {
         <div className="wrapper justify-center items-center flex-grow w-full">
           <div className="container">
             <div className="section-title flex flex-col justify-center items-start pl-8">
-              <p className="text-4xl font-semibold text-center">Algorithms</p>
-              <p className="text-xl mt-2">
+              <p className="text-2xl md:text-4xl font-semibold text-center">
+                Algorithms
+              </p>
+              <p className="text-lg md:text-xl mt-2">
                 Because everyone has their favourite algorithms they like to practice with... right?
               </p>
             </div>
-            <div className="project-box flex justify-start items-center gap-6 mt-6">
+            <div className="project-box flex flex-col md:flex-row justify-start items-center gap-6 mt-6">
               <ItemList itemData={algoData} />
             </div>
           </div>
