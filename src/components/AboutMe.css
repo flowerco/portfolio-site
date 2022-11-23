@@ -15,12 +15,11 @@
   height: 100%;
   width: 100%;
   border-radius: 2rem;
+  overflow: hidden;
 }
 
 #vanta {
   position: absolute;
-  border-radius: 2rem;
-  overflow: hidden;
   top: 0;
   left: 0;
   height: 100%;
@@ -102,5 +101,25 @@ a {
   .about {
     height: 100%;
     width: 100%;
+  }
+  .header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .header > img {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 100%;
+    border: 1px solid #ffff00;
+    box-shadow: rgb(28 32 93 / 24%) 0px 2px 8px 0px;
+  }
+  ul > li > a {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem;
   }
 }

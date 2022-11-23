@@ -14,9 +14,7 @@ function App () {
     setSidebarOpen(!sidebarOpen);
   }
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+
 
   // TODO: Could this all be one ref, containing an array?
   const homeRef = useRef(null);
