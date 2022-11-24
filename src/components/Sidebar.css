@@ -41,6 +41,9 @@
   font-size: 1.25rem;
   font-weight: 500;
   color: #555555;
+}
+
+.sidebar-menu-item.animated {
   transition: color 0.3s ease-in-out
 }
 
@@ -61,6 +64,9 @@
   background-color: #308efe;
   z-index: -1;
   transform: translateX(-50%);
+}
+
+.sidebar-menu-indicator.animated {
   transition: 0.3s ease-in-out
 }
 

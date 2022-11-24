@@ -2,7 +2,6 @@ import Logo from "../assets/images/flowerco_logo.png";
 import { ItemList } from "./ItemList";
 import { appData, projectData, algoData } from "../data/PageData";
 import { AboutMe } from "./AboutMe";
-import { useRef } from "react";
 
 export const MainPage = ({ sidebarOpen, sectionRefs }) => {
 
@@ -67,10 +66,10 @@ export const MainPage = ({ sidebarOpen, sectionRefs }) => {
                 Solo Projects
               </p>
               <p className="text-lg md:text-xl mt-2">
-                Projects I'm working on currently
+                Projects I built previously
               </p>
             </div>
-            <div className="project-box flex flex-col md:flex-row justify-start items-center px-4 md:px-0 gap-6 mt-6">
+            <div className="project-box overflow-y-auto flex flex-col md:flex-row justify-start items-center px-4 md:px-0 gap-6 mt-6">
               <ItemList itemData={projectData} />
             </div>
           </div>
@@ -85,7 +84,7 @@ export const MainPage = ({ sidebarOpen, sectionRefs }) => {
                 Algorithms
               </p>
               <p className="text-lg md:text-xl mt-2">
-                Because everyone has their favourite algorithms they like to practice with... right?
+                Because everyone has their favourite algorithms to practice with... right?
               </p>
             </div>
             <div className="project-box flex flex-col md:flex-row justify-start items-center px-4 md:px-0 gap-6 mt-6">

@@ -53,8 +53,14 @@ export const Sidebar = ({ sidebarOpen, toggleSidebarOpen, sectionRefs }) => {
         sidebarRef.current.querySelector(".sidebar-menu-item");
       indicatorRef.current.style.height = `${sidebarItem.clientHeight}px`;
       setStepHeight(sidebarItem.clientHeight);
+      // If the sideBar was just opened then make sure the highlighted menu item
+      // aligns with the current position on the page.
+      if (sidebarOpen) {
+        const scrollDist = Math.round(window.scrollY / window.innerHeight);
+        setActiveIndex(scrollDist);
+      }
     }, 50);
-  }, []);
+  }, [sidebarOpen]);
 
   // Change active index on click
   const handleClick = (index) => {

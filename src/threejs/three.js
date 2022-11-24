@@ -1,28 +1,36 @@
-import { Suspense, useState, useRef, useLayoutEffect } from "react";
+import { Suspense, useState, useRef, useLayoutEffect, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { NewModel } from "./SamModel4";
-import { Html, useProgress } from '@react-three/drei'
-import PacmanLoader from 'react-spinners/PacmanLoader';
+import { useProgress } from "@react-three/drei";
+import { useLoading } from "../state/LoadingContext";
 
 
 export const ThreeJsModel = () => {
-  
-  function Loader() {
-    const { progress } = useProgress()
-    return <Html center>
-      <PacmanLoader size={150} color={'#ffff00'} />
-      <p>{progress}% loaded</p>
-    </Html>
-  }
 
+  // Use the native react-drei progress % to set the progress in the global context
+  const { progress } = useProgress();
+  const { setProgress } = useLoading();
+  let sizes = useWindowState();
+  
+  useEffect(() => {
+    // Ensure the body of the page doesn't scroll until loading is complete
+    if (progress >= 100) {
+      document.body.style.overflowY = 'auto';
+    }
+    // Update the global progress state with the progress of the three.js model
+    setProgress(progress);
+  }, [progress, setProgress]);
+  
   function useWindowState() {
     const [windowState, setWindowState] = useState({
       height: window.innerHeight,
       width: window.innerWidth,
-      startPosition: window.innerWidth < 760 ? [0, -1.7, -10] : [3, -1.7, -10]
+      startPosition: window.innerWidth < 900 ? [0, -1.7, -10] : [3, -1.7, -10]
     });
     useLayoutEffect(() => {
       let timeoutId = null;
+      // When the screen is dragged to a different size it will rerender on every small
+      // drag movement. Put a time delay in the resize listener so it doesn't respond to eveny movement.
       const resizeListener = () => {
         // Prevent execution of previous setTimeout
         clearTimeout(timeoutId);
@@ -31,21 +39,22 @@ export const ThreeJsModel = () => {
           setWindowState({
             height: window.innerHeight,
             width: window.innerWidth,
-            startPosition: window.innerWidth < 760 ? [0, -1.7, -10] : [3, -1.7, -10]
+            startPosition: window.innerWidth < 900 ? [0, -1.7, -10] : [3, -1.7, -10]
           });
-
+          
         }, 150);
       }
       window.addEventListener('resize', resizeListener);
 
+      // Clear up and remove the listener when the component unmounts.
       return () => window.removeEventListener('resize', resizeListener);
     }, []);
     return windowState;
   }
-
+  
   function MyModel() {
     const sam = useRef();
-
+    
     useFrame(({ clock }) => {
       if (sam.current) {
         if (window.scrollY / sizes.height  < 0.9 ) {
@@ -53,13 +62,10 @@ export const ThreeJsModel = () => {
         }
       }
     });
-
-    let sizes = useWindowState();
-
+    
     return (
       <>
-        {/* <pointLight ref={light} position={[10, 10, 10]} /> */}
-        <Suspense fallback={<Loader />}>
+        <Suspense fallback={null}>
             <NewModel
             innerRef={sam}
             position={sizes.startPosition}

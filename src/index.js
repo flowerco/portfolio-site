@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { LoadingProvider } from './state/LoadingContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -15,11 +16,13 @@ export const SidebarContext = createContext({
 root.render(
   <React.StrictMode>
     <div className='h-full w-full antialiased bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400'>
-      <SidebarContext.Provider value={false}>
-        <Router>
-          <App />
-        </Router>
-      </SidebarContext.Provider>
+      <LoadingProvider>
+        <SidebarContext.Provider value={false}>
+          <Router>
+            <App />
+          </Router>
+        </SidebarContext.Provider>
+      </LoadingProvider>
     </div>
   </React.StrictMode>
 );
